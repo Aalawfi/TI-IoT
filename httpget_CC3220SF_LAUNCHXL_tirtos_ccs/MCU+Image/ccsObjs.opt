@@ -1,0 +1,1 @@
+"./syscfg/ti_drivers_config.obj" "./syscfg/ti_net_config.obj" "./syscfg/ti_drivers_net_wifi_config.obj" "./httppost.obj" "./main_tirtos.obj" "./platform.obj" "../cc32xxsf_tirtos.cmd" -lti_utils_build_linker.cmd.genlibs -l"C:/Users/BAMAROOF/workspace_v11/tirtos_builds_cc32xx_release_ccs/Debug/configPkg/linker.cmd" -l"ti/devices/cc32xx/driverlib/ccs/Release/driverlib.a" -llibc.a 
