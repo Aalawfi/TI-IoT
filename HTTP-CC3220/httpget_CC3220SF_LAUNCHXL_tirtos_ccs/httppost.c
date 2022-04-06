@@ -10,8 +10,8 @@
 
 
 /*
- *  ======== httpget.c ========
- *  HTTP Client GET example application
+ *  ======== httpost.c ========
+ *  HTTP Client POST example application
  */
 
 /* BSD support */
@@ -31,7 +31,7 @@
 #define REQUEST_URI           "/Bamaroof/api/bamaroofmcu/post-data/"
 #define USER_AGENT            "HTTPClient (ARM; TI-RTOS)"
 #define HTTP_MIN_RECV         (256)
-#define POST_DATA "{\"data\":\"7\"}"
+#define POST_DATA "{\"data\":\"15\"}"
  // charset=utf-8" defines the json format
 #define CONTENT_TYPE  "application/json; charset=utf-8"
 
@@ -47,6 +47,14 @@ extern void printError(char *errString,
  */
 void* httpTask(void* pvParameters)
 {
+
+    int value = 113; // Later this should be an extern from hardware.c
+    char data_p [18];
+
+    // puts `value` in place of %d and assign the string to data_p
+    sprintf(data_p, "{\"data\":\"%d\"}", value);
+    char * payload = data_p;
+
     bool moreDataFlag = true;
     char data[HTTP_MIN_RECV];
     int16_t ret = 0;
@@ -71,7 +79,8 @@ void* httpTask(void* pvParameters)
                              USER_AGENT,strlen(USER_AGENT),
                              HTTPClient_HFIELD_PERSISTENT);
 
-    ret |=         HTTPClient_setHeader(httpClientHandle,
+    ret |=
+            HTTPClient_setHeader(httpClientHandle,
                                         HTTPClient_HFIELD_REQ_CONTENT_TYPE,
                                         CONTENT_TYPE,strlen(CONTENT_TYPE),
                                         HTTPClient_HFIELD_PERSISTENT);
@@ -86,17 +95,13 @@ void* httpTask(void* pvParameters)
         printError("httpTask: connect failed", ret);
     }
 
-    // JSON format
-    /*
-     * {"data":x} // body
-     */
-
     ret =
         HTTPClient_sendRequest(httpClientHandle,HTTP_METHOD_POST,REQUEST_URI,
-                               (const char *)POST_DATA,
-                               strlen((const char *)POST_DATA),
+                               payload,
+                               strlen(payload),
                                0);
-
+    Display_printf(display, 0, 0, "Payload: %d\n", strlen(payload));
+    Display_printf(display, 0, 0, "Payload: %c\n", payload);
 
 
     if(ret < 0)
@@ -104,7 +109,7 @@ void* httpTask(void* pvParameters)
         printError("httpTask: send failed", ret);
     }
 
-    if(ret != HTTP_SC_OK)
+    if(ret != HTTP_SC_CREATED)
     {
         printError("httpTask: cannot get status", ret);
     }

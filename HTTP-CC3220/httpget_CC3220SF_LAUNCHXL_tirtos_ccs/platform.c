@@ -34,6 +34,9 @@
 #include <ti/drivers/net/wifi/slnetifwifi.h>
 #include <ti/display/Display.h>
 #include <ti/drivers/SPI.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <string.h>
 
 #include "ti_drivers_config.h"
 #include "pthread.h"
@@ -433,7 +436,36 @@ void mainThread(void *pvParameters)
     {
         printError("Failed to configure device to it's default state", mode);
     }
+
     Connect();
 
+
+    char value [] = ":10}";
+    char Data [] = "{\"Data\" ";
+    strcat(Data, value);
+
+
+    /*
+
+
+     while loop execution
+    int a = 10;
+    while( a < 20 ) {
+        Display_printf(display, 0, 0, "value of a: %d\n", a);
+       a++;
+    }
+
+    int sum = 5;
+    int i;
+    Display_printf(display, 0, 0, "Lift off in T minus\n");
+
+    for (i = i+1; i < 5; i=i+i) {
+        sum = sum - 1;
+        Display_printf(display, 0, 0, "sum = %d\n",sum);
+    }
+
+    Display_printf(display, 0, 0,"Blast-off",sum);
+    pause();
+*/
 
 }

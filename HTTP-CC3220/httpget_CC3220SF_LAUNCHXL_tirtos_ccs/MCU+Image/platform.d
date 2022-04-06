@@ -46,9 +46,7 @@ platform.obj: C:/ti/simplelink_cc32xx_sdk_5_30_00_08/source/ti/net/slnetutils.h
 platform.obj: C:/ti/simplelink_cc32xx_sdk_5_30_00_08/source/ti/display/Display.h
 platform.obj: C:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/include/stdarg.h
 platform.obj: C:/ti/simplelink_cc32xx_sdk_5_30_00_08/source/ti/drivers/SPI.h
-platform.obj: syscfg/ti_drivers_config.h
-platform.obj: C:/ti/simplelink_cc32xx_sdk_5_30_00_08/source/ti/devices/DeviceFamily.h
-platform.obj: C:/ti/simplelink_cc32xx_sdk_5_30_00_08/source/ti/posix/ccs/pthread.h
+platform.obj: C:/ti/simplelink_cc32xx_sdk_5_30_00_08/source/ti/posix/ccs/unistd.h
 platform.obj: C:/ti/simplelink_cc32xx_sdk_5_30_00_08/source/ti/posix/ccs/sys/types.h
 platform.obj: C:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/include/sys/types.h
 platform.obj: C:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/include/machine/endian.h
@@ -60,6 +58,10 @@ platform.obj: C:/ti/simplelink_cc32xx_sdk_5_30_00_08/source/ti/posix/ccs/sys/_in
 platform.obj: C:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/include/time.h
 platform.obj: C:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/include/abi_prefix.h
 platform.obj: C:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/include/xlocale/_time.h
+platform.obj: C:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/include/stdio.h
+platform.obj: syscfg/ti_drivers_config.h
+platform.obj: C:/ti/simplelink_cc32xx_sdk_5_30_00_08/source/ti/devices/DeviceFamily.h
+platform.obj: C:/ti/simplelink_cc32xx_sdk_5_30_00_08/source/ti/posix/ccs/pthread.h
 platform.obj: C:/ti/simplelink_cc32xx_sdk_5_30_00_08/source/ti/posix/ccs/time.h
 platform.obj: C:/ti/simplelink_cc32xx_sdk_5_30_00_08/source/ti/posix/ccs/signal.h
 platform.obj: C:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/include/signal.h
@@ -158,11 +160,7 @@ C:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/include/stdarg.h:
 
 C:/ti/simplelink_cc32xx_sdk_5_30_00_08/source/ti/drivers/SPI.h:
 
-syscfg/ti_drivers_config.h:
-
-C:/ti/simplelink_cc32xx_sdk_5_30_00_08/source/ti/devices/DeviceFamily.h:
-
-C:/ti/simplelink_cc32xx_sdk_5_30_00_08/source/ti/posix/ccs/pthread.h:
+C:/ti/simplelink_cc32xx_sdk_5_30_00_08/source/ti/posix/ccs/unistd.h:
 
 C:/ti/simplelink_cc32xx_sdk_5_30_00_08/source/ti/posix/ccs/sys/types.h:
 
@@ -185,6 +183,14 @@ C:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/include/time.h:
 C:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/include/abi_prefix.h:
 
 C:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/include/xlocale/_time.h:
+
+C:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/include/stdio.h:
+
+syscfg/ti_drivers_config.h:
+
+C:/ti/simplelink_cc32xx_sdk_5_30_00_08/source/ti/devices/DeviceFamily.h:
+
+C:/ti/simplelink_cc32xx_sdk_5_30_00_08/source/ti/posix/ccs/pthread.h:
 
 C:/ti/simplelink_cc32xx_sdk_5_30_00_08/source/ti/posix/ccs/time.h:
 
