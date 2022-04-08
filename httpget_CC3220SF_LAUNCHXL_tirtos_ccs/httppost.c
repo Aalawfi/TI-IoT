@@ -61,7 +61,7 @@ void* httpTask(void* pvParameters)
     httpClientHandle = HTTPClient_create(&statusCode,0);
     if(statusCode < 0)
     {
-        printError("httpTask: creation of http client handle failed",
+        printError("httpTask: creation of HTTP client handle failed",
                    statusCode);
     }
 
