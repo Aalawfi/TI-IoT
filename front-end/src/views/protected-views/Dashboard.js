@@ -8,10 +8,8 @@ import axios from 'axios'
 function Dashboard({user}) {
     const MAXIMUM_VALUE = 100
     const [current_data, setCurrentData] = useState(0)
+    const [streamToggle, setStreamToggle] = useState(false)
     const [current_user, setCurrentUser] = useState('')
-    const Increment = () => {
-      setCurrentData(current_data+1)
-    }
     
     // Collects data about who is currently logged in
     const base_URL = window.location.href
@@ -26,20 +24,13 @@ function Dashboard({user}) {
       axios.get(`http://localhost:8000/${current_user_const}/api/get-devices/`)
       .then( (response) => { 
         setDevice(response.data[0].device_name)
-        
       })  
-      }
+      }, []
     )
 
-      // Update our data every 5 seconds
-    const [seconds, setSeconds] = useState(0)
- useEffect( () => {
-                             // The API link now needs to specify which device
-                                          
-      const interval = window.setInterval(() => {
-        setSeconds(seconds => seconds + 1);
-      }, 5000);
-      
+    // make an api call to get the latest data
+    const stream_data = ( () => {
+
       // at server env use http://www.ti-fi-uofsc.com/${current_user_const}/api/${current_device}/get-data/`
       axios.get(`http://localhost:8000/${current_user_const}/api/${current_device}/get-data/`)
       .then( (response) => { 
@@ -47,10 +38,20 @@ function Dashboard({user}) {
         setCurrentData(response.data.data)
       })  
 
-      return () => clearInterval(interval);
+    })
+  
+    const [tickerID, setTickerID] = useState()
+    // function to be executed when the stream button is pressed
+    const stream_callback = ( () => { 
 
-      }
-    ) 
+      // fetch current data
+      stream_data()
+
+      // start a periodic call for function `stream_data` to update every 5 seconds
+      setTickerID(setInterval(stream_data, 5000))
+    })
+    
+
 
   return (
     <div className="dashboard-container">
@@ -63,6 +64,52 @@ function Dashboard({user}) {
           <div className="dashboard-content-title"> 
             <h1> dashboard content </h1>
           </div>
+
+          <div className="dashborad-content-controlPanel"> 
+                  <div className="controlPanel-stream">
+
+                    {streamToggle === false ?  // if statement
+                    
+                    <Button 
+                        variant="outlined"
+                        onClick={() => {
+                          stream_callback()
+                          setStreamToggle(!streamToggle)
+                          }}>
+                      Start Streaming
+                      </Button>
+
+                      : // else statement
+                      <Button
+                      variant="outlined"
+                      color='error'
+                      onClick={() => { 
+                        clearInterval(tickerID); 
+                        setStreamToggle(!streamToggle)} }> 
+                      Stop Stream 
+                      </Button>}
+                      
+
+                  </div>
+
+                  <div className="controlPanel-streamOnce">
+                      <Button 
+                      onClick = { () => {
+                            // at server env use http://www.ti-fi-uofsc.com/${current_user_const}/api/${current_device}/get-data/`
+                            axios.get(`http://localhost:8000/${current_user_const}/api/${current_device}/get-data/`)
+                            .then( (response) => { 
+                              console.log(response.data.data)
+                              setCurrentData(response.data.data)
+                            })  
+                        }
+                      }
+                      
+                      >
+                        Stream Once
+                      </Button>
+                  </div>
+            </div>
+
             <div className="dashboard-content-body"> 
               <div>
                 <ReactSpeedometer
@@ -79,12 +126,6 @@ function Dashboard({user}) {
 
               <div> 
                 <p> current temperature : {current_data} </p>
-              </div>
-              <div> 
-                <Button
-                  onClick = {Increment} > 
-                    Increment
-                  </Button>
               </div>
 
             </div>
