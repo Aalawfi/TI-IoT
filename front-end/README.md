@@ -1,3 +1,12 @@
+# FOR DEVELOPERS: 
+  Before you begin, you must ensure you have Node.js installed. You can install it <a href='https://nodejs.org/en/'> from here </a>. 
+  
+  Then, clone the repository in your desired path. After you clone it, you must install this project's dependencies. 
+  You can do that by typing ``` npm install ``` inside the repository you just installed. 
+  After you installed ran the above command, a node_modules folder should appear with all required dependencies.
+  
+  To launch the website on your local host, run the command ```npm start```. A page should launch in you browser.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
