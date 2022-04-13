@@ -20,7 +20,7 @@ function Dashboard({user}) {
 
     // fetch the current device 
     useEffect( () => {  
-      // at server environemnt, use http://www.ti-fi-uofsc.com/${current_user_const}/api/get-devices/
+      // at server environemnt, use https://www.ti-fi-uofsc.com/${current_user_const}/api/get-devices/
       axios.get(`http://localhost:8000/${current_user_const}/api/get-devices/`)
       .then( (response) => { 
         setDevice(response.data[0].device_name)
@@ -31,7 +31,7 @@ function Dashboard({user}) {
     // make an api call to get the latest data
     const stream_data = ( () => {
 
-      // at server env use http://www.ti-fi-uofsc.com/${current_user_const}/api/${current_device}/get-data/`
+      // at server env use https://www.ti-fi-uofsc.com/${current_user_const}/api/${current_device}/get-data/`
       axios.get(`http://localhost:8000/${current_user_const}/api/${current_device}/get-data/`)
       .then( (response) => { 
         console.log(response.data.data)
@@ -95,7 +95,7 @@ function Dashboard({user}) {
                   <div className="controlPanel-streamOnce">
                       <Button 
                       onClick = { () => {
-                            // at server env use http://www.ti-fi-uofsc.com/${current_user_const}/api/${current_device}/get-data/`
+                            // at server env use https://www.ti-fi-uofsc.com/${current_user_const}/api/${current_device}/get-data/`
                             axios.get(`http://localhost:8000/${current_user_const}/api/${current_device}/get-data/`)
                             .then( (response) => { 
                               console.log(response.data.data)
