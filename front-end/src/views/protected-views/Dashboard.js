@@ -16,7 +16,10 @@ function Dashboard({user}) {
     const base_URL_clear = base_URL.replace("/dashboard", "")
     let last_index_of_slash = base_URL_clear.lastIndexOf("/")
     const current_user_const = (base_URL_clear.substring(last_index_of_slash+1, base_URL_clear.length))
+
     const [current_device, setDevice] = useState('')
+
+    const devices = []
 
     // fetch the current device 
     useEffect( () => {  
@@ -24,8 +27,24 @@ function Dashboard({user}) {
       axios.get(`http://localhost:8000/${current_user_const}/api/get-devices/`)
       .then( (response) => { 
         setDevice(response.data[0].device_name)
+
+        response.data.map( (element) => devices.push(element.device_name))
+        console.log(devices)
+
       })  
       }, []
+    )
+
+
+    // Dispkay the recent data on the screen (once)  
+    useEffect( () => {  
+      // at server environemnt, use https://www.ti-fi-uofsc.com/${current_user_const}/api/get-devices/
+      axios.get(`http://localhost:8000/${current_user_const}/api/${current_device}/get-data/`)
+      .then( (response) => { 
+
+        setCurrentData(response.data.data) 
+      })  
+      }
     )
 
     // make an api call to get the latest data
