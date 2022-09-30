@@ -46,16 +46,31 @@ def get_all_data(request, user_name, device_name):
 # TODO post some
 @api_view(['POST'])
 def post_data(request, user_name, device_name):
+
     device_name = device_name.lower()
     # find the pk of the device
     requested_device = RegisteredDevices.objects.get(device_name = device_name).pk
+    print(request.data)
 
-    # Re-arrange so that the input can be the data value only
-    parsed_data = {'data':request.data['data'], 'to_device':requested_device}
+    Temp = request.data['data']['Tempurature']
+    Humd = request.data['data']['Humidity']
+    Movement = request.data['data']['Movement']
+    Gas = request.data['data']['Gas']
+    Generic = request.data['data']['Generic']
 
-    serializer = DataPostSetSerializer(data=parsed_data)
+    timestamp = request.data['timestamp']
+    destination_device = requested_device
+    
+    parsed_package = {'Tempurature':Temp,
+                      'Humidity':Humd,
+                      'Movement':Movement, 
+                      'Gas':Gas,
+                      'Generic':Generic,
+                      'to_device':requested_device}
+
+    serializer = DataPostSetSerializer(data=parsed_package)
     
     if serializer.is_valid():
         serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

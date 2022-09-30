@@ -2,14 +2,28 @@ import { React, useState, useEffect } from "react";
 import SideBar from "../../components/SideBar";
 import ReactSpeedometer from "react-d3-speedometer"
 import { Button } from "@mui/material";
-import axios from 'axios'
-
-
+import axios from 'axios';
+import humidity_img from "../../assets/imgs/humid.png"
+import Chart from "../../components/Chart.js";
 function Dashboard({user}) {
     const MAXIMUM_VALUE = 100
-    const [current_data, setCurrentData] = useState(0)
+
+  
+    // data states 
+    const [current_temp, setCurrentTemp] = useState(0)
+    const [current_humd, setCurrentHumd] = useState(0)
+    const [current_mvmt, setCurrentMvmt] = useState(0)
+    const [current_gas, setCurrentGas] = useState(0)
+    const [current_gnrl, setCurrentGnrl] = useState(0)
+    var default_timeline = [{name:'T-4', value:0},
+                   {name:'T-3', value:0},
+                   {name:'T-2', value:0},
+                   {name:'T-1', value:0},
+                   {name:'T', value:0}];
+    const [current_timeline, setCurrentTimeline] = useState(default_timeline)
+
+
     const [streamToggle, setStreamToggle] = useState(false)
-    const [current_user, setCurrentUser] = useState('')
     
     // Collects data about who is currently logged in
     const base_URL = window.location.href
@@ -35,17 +49,19 @@ function Dashboard({user}) {
       }, []
     )
 
+/**
+ *  The JSON response looks like this 
+ * {"id":number,
+ * "Tempurature":number,
+ * "Humidity":number,
+ * "Movement":number,
+ * "Gas":number,
+ * "Generic":number,
+ * 
+ * "creation_date":"2022-09-16T13:55:59.910246-04:00",
+ * "to_device":numebr}
+ */
 
-    // Dispkay the recent data on the screen (once)  
-    useEffect( () => {  
-      // at server environemnt, use https://www.ti-fi-uofsc.com/${current_user_const}/api/get-devices/
-      axios.get(`http://localhost:8000/${current_user_const}/api/${current_device}/get-data/`)
-      .then( (response) => { 
-
-        setCurrentData(response.data.data) 
-      })  
-      }
-    )
 
     // make an api call to get the latest data
     const stream_data = ( () => {
@@ -53,8 +69,19 @@ function Dashboard({user}) {
       // at server env use https://www.ti-fi-uofsc.com/${current_user_const}/api/${current_device}/get-data/`
       axios.get(`http://localhost:8000/${current_user_const}/api/${current_device}/get-data/`)
       .then( (response) => { 
-        console.log(response.data.data)
-        setCurrentData(response.data.data)
+        console.log(response.data)
+
+        
+          // updating values
+          setCurrentTemp(parseFloat(response.data['Tempurature']))
+          setCurrentHumd(parseFloat(response.data['Humidity']))
+          setCurrentGas(parseFloat(response.data['Gas']))
+          setCurrentMvmt(parseFloat(response.data['Movement']))
+          setCurrentGnrl(parseFloat(response.data['Generic']))
+          setCurrentTimeline(current_timeline => [...current_timeline.slice(-4),
+                                                  {name:response.data['creation_date'].substring(11,19),
+                                                   value:parseFloat(response.data['Movement'])}])
+    
       })  
 
     })
@@ -117,8 +144,18 @@ function Dashboard({user}) {
                             // at server env use https://www.ti-fi-uofsc.com/${current_user_const}/api/${current_device}/get-data/`
                             axios.get(`http://localhost:8000/${current_user_const}/api/${current_device}/get-data/`)
                             .then( (response) => { 
-                              console.log(response.data.data)
-                              setCurrentData(response.data.data)
+
+                              // updating values
+                              setCurrentTemp(parseFloat(response.data['Tempurature']))
+                              setCurrentHumd(parseFloat(response.data['Humidity']))
+                              setCurrentGas(parseFloat(response.data['Gas']))
+                              setCurrentMvmt(parseFloat(response.data['Movement']))
+                              setCurrentGnrl(parseFloat(response.data['Generic']))
+                              setCurrentTimeline(current_timeline => [...current_timeline.slice(-4),
+                                {name:response.data['creation_date'].substring(11,19),
+                                 value:parseFloat(response.data['Movement'])}])
+
+
                             })  
                         }
                       }
@@ -127,13 +164,14 @@ function Dashboard({user}) {
                         Stream Once
                       </Button>
                   </div>
-            </div>
+          </div>
 
-            <div className="dashboard-content-body"> 
-              <div>
-                <ReactSpeedometer
+            <div className="dashboard-content-body-blocks"> 
+            {/* temp graphics */}
+              <div className="temp"> 
+              <ReactSpeedometer
                       maxValue={MAXIMUM_VALUE}
-                      value={current_data > MAXIMUM_VALUE ? MAXIMUM_VALUE : current_data}
+                      value={current_temp > MAXIMUM_VALUE ? MAXIMUM_VALUE : current_temp}
                       needleColor="black"
                       startColor="blue"
                       segments={10}
@@ -141,10 +179,35 @@ function Dashboard({user}) {
                       textColor="black"
                       width={500}
                     />
+
               </div>
 
-              <div> 
-                <p> current temperature : {current_data} </p>
+              
+  
+              {/* humid graphics */}
+              <div className="humid"> 
+                <img width="150" height="150" src = {humidity_img} > 
+                </img>
+                <h1 style={{ 
+                    fontSize: "7em",
+                    textAlign: "left",
+                    color: "Black"}}> {current_humd} </h1>
+              </div>
+
+
+              <div className="mvmt">
+              <Chart 
+                     timeline={current_timeline}/>
+              </div>
+
+
+              <div className="additional"> 
+                <p> current temperature : {current_temp} </p>
+
+                <p> current humidity : {current_humd} </p>
+                <p> movement detected : {current_mvmt} </p>
+                <p> gas reading : {current_gas} </p>
+                <p> other : {current_gnrl} </p>
               </div>
 
             </div>

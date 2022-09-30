@@ -10,7 +10,7 @@
     this is similar to the tutorial where one quesion, had multiple choices.
 
 '''
-
+from django.utils.translation import gettext_lazy as _
 from atexit import register
 from statistics import mode
 from django.db import models
@@ -37,7 +37,14 @@ class RegisteredDevices(models.Model):
 
 
 class Dataset(models.Model):
-    data = models.FloatField(blank=False)
+
+    Tempurature = models.FloatField(blank=False, default=0.0)
+    Humidity = models.FloatField(blank=False, default=0.0)
+    Movement = models.FloatField(blank=False, default=0.0)
+    Gas = models.FloatField(blank=False, default=0.0)
+    Generic = models.FloatField(blank=False, default=0.0)
+
+
     to_device = models.ForeignKey(RegisteredDevices, on_delete=models.CASCADE,related_name='dataset')
     creation_date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
