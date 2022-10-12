@@ -18,7 +18,7 @@ from django.db import models
 
 class Userpool(models.Model):
     username = models.CharField(max_length=200)
-    
+    phone_num = models.CharField(default='-1', max_length=200)
     # When calling a user, the default return is an ID, but we want to return the name
     def __str__(self):
         return self.username
