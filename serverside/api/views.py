@@ -94,3 +94,28 @@ def post_data(request, user_name, device_name):
         serializer.save()
         return Response(status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# www.ti-fi-uofsc.com/Username/api/update-phone/
+# {'new_number' : 'new string number'}
+@api_view(['PUT', 'GET'])
+def update_phone(request, user_name):
+    user_name = user_name.capitalize()
+    requested_user = Userpool.objects.get(username=user_name)
+
+    if request._request.method == 'GET':
+        print('get')
+        return Response(requested_user.phone_num)
+
+    else:
+        print('put')
+        new_phone = request.data['new_number']
+
+        try:
+            requested_user.phone_num = new_phone
+            requested_user.save()    
+            return Response(status=200)
+
+        except Exception as e: 
+            print('error\n')
+            print(e)
+            return Response(status=403)
