@@ -76,7 +76,7 @@ def post_data(request, user_name, device_name):
             if thread.name == f'sms_thread_{user_name}':
                 thread_active = True
         if thread_active == False:
-            threading.Thread(name=f'sms_thread_{user_name}', target=send_sms, args=('+14237417499',)).start()
+            threading.Thread(name=f'sms_thread_{user_name}', target=send_sms, args=(phone_num,)).start()
 
     timestamp = request.data['timestamp']
     destination_device = requested_device
