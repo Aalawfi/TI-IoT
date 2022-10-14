@@ -6,6 +6,7 @@ import Dashboard from "../protected-views/Dashboard"
 import About from "./About"
 import {BrowserRouter, Routes, Route} from "react-router-dom"
 import Devices from "../protected-views/Devices"
+import Alerts from "../protected-views/Alerts"
 import Contact from "./Contact"
 import Documentation from "./Docementation"
 import LoginScreen from "../../components/LoginScreen"
@@ -34,6 +35,16 @@ export default function LandingPage() {
                                 <Route
                                  path={user.name+'/devices'} 
                                  element= {<Devices/>} 
+                                 key = {user}
+                                 />
+                                 )
+                        }) } 
+
+                        {USERS.map( (user,key) => {
+                            return(
+                                <Route
+                                 path={user.name+'/alerts'} 
+                                 element= {<Alerts/>} 
                                  key = {user}
                                  />
                                  )

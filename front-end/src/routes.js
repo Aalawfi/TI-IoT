@@ -1,6 +1,6 @@
 import Dashboard from "./views/protected-views/Dashboard";
-import Devices from './views/protected-views/Devices';
-
+import Devices from "./views/protected-views/Devices";
+import Alerts from "./views/protected-views/Alerts";
 const dashboardRoutes = [
   
     {
@@ -16,6 +16,13 @@ const dashboardRoutes = [
       icon: "nc-icon nc-bell-55",
       component: Devices,
       layout: "/admin",
+    },
+    {
+      path: "alerts",
+      name: "Alerts",
+      icon: "nc-icon nc-bell-55",
+      component: Alerts,
+      layout: "/admin", 
     },
   ];
   
