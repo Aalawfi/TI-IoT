@@ -4,7 +4,7 @@ from userspool.models import *
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = Userpool
-        fields = '__all__'
+        fields = ['phone_num']
 
 class DevicesSerializer(serializers.ModelSerializer):
     class Meta:
