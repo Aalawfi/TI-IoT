@@ -1,5 +1,4 @@
 import os
-import sys
 import time
 from twilio.rest import Client 
 
