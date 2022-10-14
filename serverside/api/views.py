@@ -48,7 +48,7 @@ def get_all_data(request, user_name, device_name):
     serialized = DataSetSerializer(data, many=True)
     return Response( serialized.data)
 
-# TODO post some
+
 @api_view(['POST'])
 def post_data(request, user_name, device_name):
     user_name = user_name.capitalize()
@@ -71,12 +71,12 @@ def post_data(request, user_name, device_name):
     # to enable, change this to false 
         thread_active = False
     #    thread_active = False
-    
+
         for thread in threading.enumerate():
-            if thread.name == 'sms_thread':
+            if thread.name == f'sms_thread_{user_name}':
                 thread_active = True
         if thread_active == False:
-            threading.Thread(name='sms_thread', target=send_sms, args=('+14237417499',)).start()
+            threading.Thread(name=f'sms_thread_{user_name}', target=send_sms, args=('+14237417499',)).start()
 
     timestamp = request.data['timestamp']
     destination_device = requested_device
