@@ -1,25 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.9ac0a1e2.css",
-    "main.js": "/static/js/main.0606d109.js",
+    "main.css": "/static/css/main.5a2e9887.css",
+    "main.js": "/static/js/main.6d339175.js",
     "static/js/787.22edae46.chunk.js": "/static/js/787.22edae46.chunk.js",
-    "static/media/fa-solid-900.ttf": "/static/media/fa-solid-900.79da213423ac0def2058.ttf",
-    "static/media/fa-brands-400.ttf": "/static/media/fa-brands-400.0a1b701f5563c2288281.ttf",
-    "static/media/fa-solid-900.woff2": "/static/media/fa-solid-900.4896d4b04430cc3dfb06.woff2",
-    "static/media/fa-brands-400.woff2": "/static/media/fa-brands-400.f77bcc98bb7468c8b15a.woff2",
-    "static/media/sidebar-4.jpg": "/static/media/sidebar-4.b7eb4d1bec304bbb3795.jpg",
-    "static/media/fa-regular-400.ttf": "/static/media/fa-regular-400.15d98c18221c8bcb2334.ttf",
-    "static/media/fa-regular-400.woff2": "/static/media/fa-regular-400.d79c2ec96ab9ff1161a2.woff2",
-    "static/media/game-cocks-logopng.png": "/static/media/game-cocks-logopng.1dacb428780f1b25e589.png",
-    "static/media/fa-v4compatibility.ttf": "/static/media/fa-v4compatibility.52eba2c567c521b8d58a.ttf",
-    "static/media/fa-v4compatibility.woff2": "/static/media/fa-v4compatibility.3d503f89ccaf1b224aa5.woff2",
+    "static/media/humid.png": "/static/media/humid.55b73c9dd65a1731a249.png",
+    "static/media/CC3220img.png": "/static/media/CC3220img.d83c605a37333f7ad69a.png",
+    "static/media/gamecocks.png": "/static/media/gamecocks.1dacb428780f1b25e589.png",
     "index.html": "/index.html",
-    "main.9ac0a1e2.css.map": "/static/css/main.9ac0a1e2.css.map",
-    "main.0606d109.js.map": "/static/js/main.0606d109.js.map",
+    "main.5a2e9887.css.map": "/static/css/main.5a2e9887.css.map",
+    "main.6d339175.js.map": "/static/js/main.6d339175.js.map",
     "787.22edae46.chunk.js.map": "/static/js/787.22edae46.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9ac0a1e2.css",
-    "static/js/main.0606d109.js"
+    "static/css/main.5a2e9887.css",
+    "static/js/main.6d339175.js"
   ]
 }
