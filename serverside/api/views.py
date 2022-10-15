@@ -1,5 +1,4 @@
 # Django utils
-from urllib import response
 from django.http import JsonResponse
 from django.shortcuts import render
 
