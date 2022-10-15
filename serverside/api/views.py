@@ -61,7 +61,7 @@ def post_data(request, user_name, device_name):
     phone_num = requested_user.phone_num
     # print(request.data)
 
-    Temp = request.data['data']['Tempurature']
+    Temp = request.data['data']['Temperature']
     Humd = request.data['data']['Humidity']
     Movement = request.data['data']['Movement']
     Gas = request.data['data']['Gas']
@@ -72,16 +72,7 @@ def post_data(request, user_name, device_name):
         thread_active = False
     #    thread_active = False
 
-        for thread in threading.enumerate():
-            if thread.name == f'sms_thread_{user_name}':
-                thread_active = True
-        if thread_active == False:
-            threading.Thread(name=f'sms_thread_{user_name}', target=send_sms, args=(phone_num,)).start()
-
-    timestamp = request.data['timestamp']
-    destination_device = requested_device
-    
-    parsed_package = {'Tempurature':Temp,
+    parsed_package = {'Temperature':Temp,
                       'Humidity':Humd,
                       'Movement':Movement, 
                       'Gas':Gas,

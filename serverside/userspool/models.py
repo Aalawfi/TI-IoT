@@ -38,7 +38,7 @@ class RegisteredDevices(models.Model):
 
 class Dataset(models.Model):
 
-    Tempurature = models.FloatField(blank=False, default=0.0)
+    Temperature = models.FloatField(blank=False, default=0.0)
     Humidity = models.FloatField(blank=False, default=0.0)
     Movement = models.FloatField(blank=False, default=0.0)
     Gas = models.FloatField(blank=False, default=0.0)
