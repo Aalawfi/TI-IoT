@@ -8,6 +8,8 @@ import Chart from "../../components/Chart.js";
 function Dashboard({user}) {
     const MAXIMUM_VALUE = 100
 
+    const HOST = "http://localhost:8000"
+    //const HOST = "https://www.ti-fi-uofsc.com"
   
     // data states 
     const [current_temp, setCurrentTemp] = useState(0)
@@ -39,7 +41,7 @@ function Dashboard({user}) {
     useEffect( () => {  
       // Dev : `http://localhost:8000/${current_user_const}/api/get-devices/
       // at server environemnt, use https://www.ti-fi-uofsc.com/${current_user_const}/api/get-devices/
-      axios.get(`https://www.ti-fi-uofsc.com/${current_user_const}/api/get-devices/`)
+      axios.get(`${HOST}/${current_user_const}/api/get-devices/`)
       .then( (response) => { 
         setDevice(response.data[0].device_name)
 
@@ -70,13 +72,11 @@ function Dashboard({user}) {
       // Dev: http://localhost:8000/${current_user_const}/api/${current_device}/get-data/`
       // at server env use https://www.ti-fi-uofsc.com/${current_user_const}/api/${current_device}/get-data/`
       
-      axios.get(`https://www.ti-fi-uofsc.com/${current_user_const}/api/${current_device}/get-data/`)
+      axios.get(`${HOST}/${current_user_const}/api/${current_device}/get-data/`)
       .then( (response) => { 
-        console.log(response.data)
-
         
           // updating values
-          setCurrentTemp(parseFloat(response.data['Tempurature']))
+          setCurrentTemp(parseFloat(response.data['Temperature']))
           setCurrentHumd(parseFloat(response.data['Humidity']))
           setCurrentGas(parseFloat(response.data['Gas']))
           setCurrentMvmt(parseFloat(response.data['Movement']))
@@ -144,13 +144,13 @@ function Dashboard({user}) {
                   <div className="controlPanel-streamOnce">
                       <Button 
                       onClick = { () => {
-                            // dev: http://localhost:8000/${current_user_const}/api/${current_device}/get-data/
+                            
                             // at server env use https://www.ti-fi-uofsc.com/${current_user_const}/api/${current_device}/get-data/`
-                            axios.get(`https://www.ti-fi-uofsc.com/${current_user_const}/api/${current_device}/get-data/`)
+                            axios.get(`${HOST}/${current_user_const}/api/${current_device}/get-data/`)
                             .then( (response) => { 
 
                               // updating values
-                              setCurrentTemp(parseFloat(response.data['Tempurature']))
+                              setCurrentTemp(parseFloat(response.data['Temperature']))
                               setCurrentHumd(parseFloat(response.data['Humidity']))
                               setCurrentGas(parseFloat(response.data['Gas']))
                               setCurrentMvmt(parseFloat(response.data['Movement']))
