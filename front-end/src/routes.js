@@ -1,6 +1,8 @@
 import Dashboard from "./views/protected-views/Dashboard";
 import Devices from "./views/protected-views/Devices";
 import Alerts from "./views/protected-views/Alerts";
+import History from "./views/protected-views/History";
+
 const dashboardRoutes = [
   
     {
@@ -24,6 +26,13 @@ const dashboardRoutes = [
       component: Alerts,
       layout: "/admin", 
     },
+    {
+    path: "history",
+    name: "History",
+    icon: "nc-icon nc-bell-55",
+    component: History,
+    layout: "/admin", 
+    }
   ];
   
   export default dashboardRoutes;
