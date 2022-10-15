@@ -28,7 +28,7 @@ class Userpool(models.Model):
     alert_sensor=models.CharField(max_length=200,
                                 choices=SENSORS_CHOICES,
                                 default="Temperature")
-    alert_threshold = models.FloatField(blank=False, default=-1.0)
+    alert_threshold = models.FloatField(blank=False, default=9999.0)
     phone_number = models.CharField(default='-1', max_length=200)
 
     # When calling a user, the default return is an ID, but we want to return the name
