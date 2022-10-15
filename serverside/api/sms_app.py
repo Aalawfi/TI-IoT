@@ -2,7 +2,7 @@ import os
 import time
 from twilio.rest import Client 
 
-def send_sms(phone_num):
+def send_sms(phone_num, alert_sensor, alert_threshold ):
 
     account_sid = os.environ['TWILIO_ACCOUNT_SID']
     auth_token = os.environ['TWILIO_AUTH']
@@ -11,7 +11,7 @@ def send_sms(phone_num):
     try:
         message = client.messages.create(  
                                     messaging_service_sid=msg_service, 
-                                    body='TI-FI ALERT: TEMPERATURE HIT THRESHOLD!!',      
+                                    body=f'TI-FI ALERT:{alert_sensor} EXCEEDED THE THRESHOLD ({alert_threshold})!!',      
                                     to=str(phone_num) 
                                 )
     except Exception as e:
