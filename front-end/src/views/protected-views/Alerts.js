@@ -5,6 +5,10 @@ import axios from 'axios'
 
 
 function Alerts() {
+    
+    const HOST = "http://localhost:8000"
+    //const HOST = "https://www.ti-fi-uofsc.com"
+
     // Collects data about who is currently logged in
     const base_URL = window.location.href
     const base_URL_clear = base_URL.replace("/alerts", "")
@@ -12,25 +16,34 @@ function Alerts() {
     let last_index_of_slash = base_URL_clear.lastIndexOf("/")
     const current_user_const = (base_URL_clear.substring(last_index_of_slash+1, base_URL_clear.length))
 
-  const [phone_number, setPhoneNumber] = useState('')
-
+    const [alert_sensor, setAlertSensor] = useState('')
+    const [threshold_value, setThreshold] = useState('')
+    const [phone_number, setPhoneNumber] = useState('')
 
     // fetch the current device 
     useEffect( () => {  
-      // at server environemnt, use https://www.ti-fi-uofsc.com/${current_user_const}/api/get-devices/
-      axios.get(`http://localhost:8000/${current_user_const}/api/update-phone/`)
+      // at server environemnt, use https://www.ti-fi-uofsc.com/${current_user_const}/api/update-phone/
+      axios.get(`${HOST}/${current_user_const}/api/update-alerts/`)
       .then( (response) => { 
-        setPhoneNumber(response.data)
+        
+        setAlertSensor(response.data['alert_sensor'])
+        setThreshold(response.data['alert_threshold'])
+        setPhoneNumber(response.data['phone_number'])
 
       })  
       }
     )
 
     const update_phone = () => {
+      var new_alert_sensor = document.getElementById("sensors_selection_list").value;
+      var new_threshold = document.getElementById("new_trigger_value").value;
       var new_number = document.getElementById("new_phone_number").value;
+
       if (new_number.length > 1){
-        axios.put(`http://localhost:8000/${current_user_const}/api/update-phone/`,
-        {"new_number" : new_number} )
+        axios.put(`${HOST}/${current_user_const}/api/update-alerts/`,
+        { "new_sensor_alert" : new_alert_sensor,
+          "new_threshold" : new_threshold,
+          "new_number" : new_number} )
         window.location.reload();
         }
     }
@@ -104,6 +117,7 @@ function Alerts() {
                     New Phone Number:
                   <input type="text"
                         id='new_phone_number'
+                        defaultValue={phone_number}
                         placeholder="+10001112222"
                         style={{margin: '20px'}} />
                   </label>
