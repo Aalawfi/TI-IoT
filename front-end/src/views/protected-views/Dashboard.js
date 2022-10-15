@@ -1,10 +1,16 @@
+// React
 import { React, useState, useEffect } from "react";
+
+// Static objects
 import SideBar from "../../components/SideBar";
-import ReactSpeedometer from "react-d3-speedometer"
+import ReactSpeedometer from "react-d3-speedometer";
 import { Button } from "@mui/material";
-import axios from 'axios';
-import humidity_img from "../../assets/imgs/humid.png"
+import humidity_img from "../../assets/imgs/humid.png";
 import Chart from "../../components/Chart.js";
+
+// HTTP
+import axios from 'axios';
+
 function Dashboard({user}) {
     const MAXIMUM_VALUE = 100
 

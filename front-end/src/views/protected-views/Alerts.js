@@ -34,7 +34,7 @@ function Alerts() {
       }
     )
 
-    const update_phone = () => {
+    const update_settings = () => {
       var new_alert_sensor = document.getElementById("sensors_selection_list").value;
       var new_threshold = document.getElementById("new_trigger_value").value;
       var new_number = document.getElementById("new_phone_number").value;
@@ -122,8 +122,8 @@ function Alerts() {
                         style={{margin: '20px'}} />
                   </label>
                   <input type="submit"
-                        value="Update Number"
-                        onClick={update_phone}
+                        value="Update Settings"
+                        onClick={update_settings}
                         style={{width: '10vw'}} />
                 </div>
               

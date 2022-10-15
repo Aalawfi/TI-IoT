@@ -1,10 +1,13 @@
+// React
 import React from "react";
 import {useState, useEffect} from "react"
+
+// Static objects 
 import Sidebar from "../../components/SideBar";
+
+// HTTP
 import axios from 'axios'
-import Nav from "react-bootstrap/Nav";
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
+
 
 function Devices() {
 
