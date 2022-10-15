@@ -48,7 +48,44 @@ function Alerts() {
           
               <h3> Manage alerts </h3>
             
-  
+              <div>
+              <label> Select the sensor to recieve alerts from : </label>
+              <select name="sensors_selection_list"
+                      id="sensors_selection_list"
+                      style={{margin: '20px' }}>
+                <option value="none" > None </option>
+                <option value="Temperature" 
+                        selected={alert_sensor=='Temperature' ? true : false}> 
+                        Temperature sensor 
+                </option>
+                <option value="Humidity" 
+                        selected={alert_sensor=='Humidity' ? true : false}>
+                        Humidity sensor 
+                </option>
+                <option value="Movement"
+                        selected={alert_sensor=='Movement' ? true : false}> 
+                        Movement sensor 
+                </option>
+                <option value="Gas" 
+                        selected={alert_sensor=='Gas' ? true : false}>
+                        Gas sensor 
+                </option>
+                <option value="Generic" 
+                        selected={alert_sensor=='Generic' ? true : false}>
+                        Generic sensor
+                </option>
+              </select>
+
+              <label> 
+                Trigger value: 
+              </label>
+              <input type="text"
+                     id='new_trigger_value'
+                     defaultValue={threshold_value}
+                     placeholder={threshold_value}
+                     style={{margin: '20px'}} />
+
+              </div>
 
 
               <div> 
