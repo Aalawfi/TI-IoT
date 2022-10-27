@@ -171,7 +171,7 @@ function Dashboard({user}) {
                       }
                       
                       >
-                        Stream Once
+                        Snapshot
                       </Button>
                   </div>
           </div>
