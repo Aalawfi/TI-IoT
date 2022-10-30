@@ -1,0 +1,31 @@
+# define the syntax
+version: '3'
+
+services:
+  backend:
+    
+    # this to build an image from the files in the project root directory.
+    build: .
+
+    # this defines what to do when a container is ran
+    command: bash -c " echo 'env files ready? == $ENV_READY' && 
+                      python manage.py collectstatic --no-input &&
+                      python manage.py makemigrations &&
+                      python manage.py migrate &&
+                      echo 'running server..' &&
+                      gunicorn --workers=2 --bind=0.0.0.0:8000 serverside.wsgi:application"
+    container_name: tifi-container
+  
+    # Maps the local machine port to the container port
+    ports:
+      - "8000:8000"
+
+    # environment variables 
+    env_file: 
+      - ./.env
+
+    # Link files on local host to files on the container 
+    volumes:
+      - ./serverside/build:/tifi-root/build
+    
+    
