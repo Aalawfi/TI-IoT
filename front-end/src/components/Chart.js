@@ -12,19 +12,7 @@ let timeline = [{name : 'T-4', value : 0},
 
 
 function Chart(props){
-	/* most recent 5 hours*/
-	/*var today = new Date(),
-    time = today.getHours();
 
-	console.log(time) */
-	console.log(props)
-
-/*	timeline[0] = timeline[1]
-	timeline[1] = timeline[2] 
-	timeline[2] = timeline[3] 
-	timeline[3] = timeline[4] 
-	timeline[4] = {name:props.time.substring(11, 19),
-			   	   value : props.value}*/
 
 	return(
 		<div> 
