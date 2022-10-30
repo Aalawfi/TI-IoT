@@ -7,5 +7,5 @@ HTTP-CC3220
 __pycache__
 db.sqlite3
 serverside/staticfiles
-serverside/build
-
+front-end/build/*
+serverside/userspool/migrations/*
