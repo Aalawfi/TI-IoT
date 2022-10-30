@@ -21,6 +21,7 @@ For the data that was collected by the sensors to be shared on the internet, the
 # fakeMCU 
   - Simulate the data being added to the back-end database thorugh an API 
   - External entity to the AWS server
+  - link: https://aalawfi.github.io/fake-mcu/
 
 # FOR DEVELOPERS: 
   Before you begin on front-end, you must ensure you have Node.js installed. You can install it <a href='https://nodejs.org/en/'> from here </a>. 
