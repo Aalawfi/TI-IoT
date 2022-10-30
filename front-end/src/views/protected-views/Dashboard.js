@@ -14,9 +14,19 @@ import axios from 'axios';
 function Dashboard({user}) {
     const MAXIMUM_VALUE = 100
 
-    const HOST = "http://localhost:8000"
-    //const HOST = "https://www.ti-fi-uofsc.com"
-  
+    // const HOST = "http://localhost:8000"
+    // const HOST = "https://www.ti-fi-uofsc.com"
+    
+    // if in dev mode, don't use HTTPS
+    if(process.env.REACT_APP_DEV_MODE == 1) {
+      var HOST = process.env.REACT_APP_LOCAL_HOST 
+      HOST = 'http://'.concat(HOST)
+    } 
+    else {
+      var HOST = process.env.REACT_APP_PROD_HOST
+      HOST = 'https://www.'.concat(HOST)
+    }
+
     // data states 
     const [current_temp, setCurrentTemp] = useState(0)
     const [current_humd, setCurrentHumd] = useState(0)
@@ -154,7 +164,6 @@ function Dashboard({user}) {
                             // at server env use https://www.ti-fi-uofsc.com/${current_user_const}/api/${current_device}/get-data/`
                             axios.get(`${HOST}/${current_user_const}/api/${current_device}/get-data/`)
                             .then( (response) => { 
-
                               // updating values
                               setCurrentTemp(parseFloat(response.data['Temperature']))
                               setCurrentHumd(parseFloat(response.data['Humidity']))

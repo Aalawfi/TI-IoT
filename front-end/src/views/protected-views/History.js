@@ -11,7 +11,17 @@ import axios from 'axios';
 function History() {
     
     //const HOST = "http://localhost:8000"
-    const HOST = "https://www.ti-fi-uofsc.com"
+    // const HOST = "https://www.ti-fi-uofsc.com"
+
+    // if in dev mode, don't use HTTPS
+    if(process.env.REACT_APP_DEV_MODE == 1) {
+      var HOST = process.env.REACT_APP_LOCAL_HOST 
+      HOST = 'http://'.concat(HOST)
+    } 
+    else {
+      var HOST = process.env.REACT_APP_PROD_HOST
+      HOST = 'https://www.'.concat(HOST)
+    }
 
     // Collects data about who is currently logged in
     const base_URL = window.location.href
