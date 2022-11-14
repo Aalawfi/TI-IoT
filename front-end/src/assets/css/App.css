@@ -36,6 +36,8 @@
 
   grid-column: 1/2;
   grid-row: 1/1;
+  background-color:rgb(105, 105, 105);
+  
 }
 
 .about-container .about-container-body .about-body-text {
@@ -48,6 +50,12 @@
 
   grid-column: 4/4;
   grid-row: 2/3;
+}
+.about-container .about-container-body .about-body-team{
+
+  grid-column: 4/4;
+  grid-row: 4/4;
+  
 }
 
 .dashboard-container {
@@ -161,7 +169,23 @@
   
 }
 
+.dashboard-container .dashboard-content .export-button {
+  grid-column: 4 / 4;
+  grid-row: 4 / 5;
+  margin-left: 120vh;
+  display: flex;
+  flex-direction: column;
+
+
+}
+
 .Devices-content {
   position: fixed;
   left:400px
 }
+
+.font-google {
+  font-family: 'Secular One', sans-serif;
+}
+
+
