@@ -225,7 +225,7 @@ function Dashboard({user}) {
 
                 <p> current humidity : {current_humd} </p>
                 <p> movement detected : {current_mvmt} </p>
-                <p> gas reading : {current_gas} </p>
+                <p> volatile Organic Compound Index : {current_gas} </p>
                 <p> other : {current_gnrl} </p>
               </div>
 
