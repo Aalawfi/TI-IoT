@@ -30,12 +30,12 @@ DEBUG = True
 # DEBUG = False
 
 # Development
-# ALLOWED_HOSTS = ['localhost:8000', 'localhost:3000', 'localhost', '127.0.0.1']
+#ALLOWED_HOSTS = ['localhost:8000', 'localhost:3000', 'localhost', '127.0.0.1']
 
-ALLOWED_HOSTS =  os.environ.get('ALLOWED_HOSTS', default='0.0.0.0').split(",")
+# ALLOWED_HOSTS =  os.environ.get('ALLOWED_HOSTS', default='0.0.0.0').split(",")
 
 # Production 
-# ALLOWED_HOSTS = ['localhost:8000', 'www.ti-fi-uofsc.com', 'ti-fi-uofsc.com']
+ALLOWED_HOSTS = ['localhost', 'www.ti-fi-uofsc.com', 'ti-fi-uofsc.com']
 
 # Application definition
 
