@@ -1,8 +1,10 @@
 // React 
 import React, { useState, useEffect } from 'react';
 import Griddle, { ColumnDefinition, plugins, RowDefinition } from 'griddle-react';
+
 // Static objects
 import Sidebar from "../../components/SideBar";
+import CsvButton from '../../components/CsvButton';
 
 // HTTP
 import axios from 'axios';
@@ -98,6 +100,8 @@ function History() {
               <Griddle data={data_array[0]}
                        styleConfig={styleConfig}
                        plugins={[plugins.LocalPlugin]}>
+
+
               <RowDefinition>
                 <ColumnDefinition id='creation_date'
                                   title='timestamp'
@@ -105,12 +109,17 @@ function History() {
                 <ColumnDefinition id='Temperature'/>
                 <ColumnDefinition id='Humidity'/>
                 <ColumnDefinition id='Movement'/>
-                <ColumnDefinition id='Gas'/>
+                <ColumnDefinition id='volatile Organic Compound Index'/>
                 <ColumnDefinition id='Generic'/>
                 
               </RowDefinition>
               
               </Griddle>
+              </div>
+
+              <div className='export-button'>
+                  
+                <CsvButton data={data_array.length != 0 ? data_array : ''}/>
               </div>
             </div>
 
