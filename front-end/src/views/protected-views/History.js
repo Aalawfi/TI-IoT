@@ -109,7 +109,8 @@ function History() {
                 <ColumnDefinition id='Temperature'/>
                 <ColumnDefinition id='Humidity'/>
                 <ColumnDefinition id='Movement'/>
-                <ColumnDefinition id='volatile Organic Compound Index'/>
+                <ColumnDefinition id='Gas'
+                                  title='Volatile Organic Compound Index'/>
                 <ColumnDefinition id='Generic'/>
                 
               </RowDefinition>
